@@ -24,7 +24,14 @@ app.get('/animals/type/:type', (req, res) => {
         res.status(404).json({ message: 'No such type of animals', searchedType: req.params.type })
     }
 })
-
+app.get('/animals/count/:type', (req, res) => {
+    const animalsCountByType = animals.filter(({ type }) => type === req.params.type).length
+    if (animalsCountByType > 0) {
+        res.status(200).json(animalsCountByType)
+    } else {
+        res.status(404).json({ message: 'No such type of animals', searchedType: req.params.type })
+    }
+})
 app.listen(port, () => {
     console.log(`server is up on ${port}`)
 })
