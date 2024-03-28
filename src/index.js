@@ -1,9 +1,9 @@
 import express from 'express'
 import port from '../utils/port.js'
-import animals from './db/animals.js'
+import animals_ from './db/animals.js'
 const app = express()
 
-
+let animals = [...animals_]
 app.get('/animals', (req, res) => {
     res.status(200).json(animals)
 })
@@ -63,6 +63,8 @@ app.put('/animals/hbd/:id', (req, res) => {
         res.status(404).json({ message: 'No such animal' })
     }
 })
+
+
 app.listen(port, () => {
     console.log(`server is up on ${port}`)
 })
