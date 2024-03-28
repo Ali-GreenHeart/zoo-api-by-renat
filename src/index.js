@@ -5,7 +5,8 @@ const app = express()
 
 let animals = [...animals_]
 app.get('/animals', (req, res) => {
-    res.status(200).json(animals)
+    const limit = req.query.limit ?? 5
+    res.status(200).json(animals.slice(0, limit))
 })
 app.get('/animals/:id', (req, res) => {
     const animal = animals.find(({ id }) => id === req.params.id)
