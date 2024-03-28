@@ -64,6 +64,11 @@ app.put('/animals/hbd/:id', (req, res) => {
     }
 })
 
+app.delete("/animals/type/:type", (req, res) => {
+    const type = req.params.type
+    animals = animals.filter((an) => an.type !== type)
+    res.status(200).json({ message: `Deleted all animals by type of ${type}` })
+})
 
 app.listen(port, () => {
     console.log(`server is up on ${port}`)
